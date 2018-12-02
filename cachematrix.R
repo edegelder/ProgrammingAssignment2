@@ -1,8 +1,21 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Two functions are defined:
+## 'makeCacheMatrix' returns a custom matrix that allows to cache the inverse, 
+## such that the inverse needs to be computed only once.
+## 'cacheSolve' returns the inverse of the custom matrix that is returned by
+## makeCacheMatrix.
 
-## Write a short comment describing this function
-
+## makeCacheMatrix <- function(x = matrix())
+## Return a custom matrix that allows to cache the inverse, such that the 
+## inverse needs to be computed only once. 
+## Input:
+## - x: a square matrix.
+## Output:
+## - The output is a list of four functions:
+##   - set(x = matrix()): The matrix can be (re)set.
+##   - get(): The actual matrix is returned.
+##   - setinverse(y = matrix()): The inverse of the actual matrix is set.
+##   - getinverse(): The inverse of the actual matrix is returned if it is set.
+##       otherwise NULL is returned.
 makeCacheMatrix <- function(x = matrix()) {
     # Initialize the inverse as an empty matrix, meaning that it isn't computed.
     inv <- NULL
@@ -32,8 +45,11 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
+## cacheSolve <- function(x, ...)
+## Return the inverse of the matrix returned by the makeCacheMatrix.
+## If the inverse is already computed before, that inverse will be used. The
+## 'solve' function is used to compute the inverse. Any extra arguments provided
+## with the ... are also passed to the 'solve' function. 
 cacheSolve <- function(x, ...) {
     # Obtain the matrix inverse from the 'special' matrix returned by
     # makeCacheMatrix.
